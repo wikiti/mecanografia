@@ -7,10 +7,29 @@ Se trata de una aplicación sencilla para practicar mecanografía desde una term
 ## 2. Dependencias ##
 El proyecto no tiene ningún tipo de dependencia externa.
 
-## 3. Implementación: ##
+## 3. Implementación ##
 ***C++*** implementado en [**Mingw**](http://www.mingw.org/) (principalmente), *GCC* o cualquier compilador libre de *C++*
 
-## 4. Autores ##
+## 4. Descargas ##
+
+- Releases: [https://github.com/wikiti/mecanografia/releases](https://github.com/wikiti/mecanografia/releases)
+
+## 5. Uso ##
+1. Invocar al programa bajo la línea de comandos de windows o *cmd*. Se puede invocar con un parámetro que describe el ***modo*** de práctica.
+2. Escribir texto para practicar.
+3. ¡A practicar!
+
+Modos de práctica:
+
+- **normal**: Si te equivocas, continúas dónde metiste la pata.
+- **repalabra**: Si te equivocas, debes repetir la última palabra mal escrita.
+- **hardcore**: Si te equivocas, debes repetir todo el escrito.
+
+Por ejemplo, podemos invocar al programa así:
+		
+	$> meca repalabra
+
+## 6. Autores ##
 
 Este proyecto ha sido desarrollado, en conjunto, por:
 
