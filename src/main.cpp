@@ -15,46 +15,36 @@
 
 #include "display.h"
 
+using namespace DISPLAY;
 using namespace std;
 
-namespace modo
-{
-  enum modo_tipeado {normal = 0, hardcore, repalabra};
-}
-
-void gotoxy(int column, int line)
-{
-  COORD coord;
-  coord.X = column;
-  coord.Y = line;
-  SetConsoleCursorPosition(GetStdHandle( STD_OUTPUT_HANDLE ), coord);
-}
+enum modo_tipeado {normal = 0, hardcore, repalabra};
 
 void leer(string& texto)
 {
   getline(cin, texto, '#');
-  gotoxy(0,0);
+  Display::gotoxy(0,0);
 
   cout << texto << " " << endl;
 }
 
-modo::modo_tipeado elegir_modo(int argc, char* argv[])
+modo_tipeado elegir_modo(int argc, char* argv[])
 {
   if(argc == 2)
   {
     string arg(argv[1]);
     if(arg == "hardcore")
-      return modo::hardcore;
+      return hardcore;
     else if(arg == "repalabra")
-      return modo::repalabra;
+      return repalabra;
   }
   
-  return modo::normal;
+  return normal;
 }
 
 int main(int argc, char* argv[])
 {
-  system("CLS");
+  Display::clear();
   Display::cambiar(BLANCO);
   cout << " Introduzca el texto que desea practicar a" << char(164) << "adiendo un \'#\' al final." << endl ;
   cout << " Posteriormente, escriba su texto hasta completarlo." << endl << endl;
@@ -63,16 +53,16 @@ int main(int argc, char* argv[])
   string texto;
   leer(texto);
 
-  system("CLS");
+  Display::clear();
   Display::cambiar(GRIS_C);
-  gotoxy(0,0);
+  Display::gotoxy(0,0);
   cout << texto;
   
   Display::cambiar(VERDE_C);
-  gotoxy(0,0);
+  Display::gotoxy(0,0);
   SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 10);
   
-  modo::modo_tipeado tipeado = elegir_modo(argc, argv);
+  modo_tipeado tipeado = elegir_modo(argc, argv);
   unsigned int errores = 0;
   unsigned int i = 0;
   
@@ -94,18 +84,18 @@ int main(int argc, char* argv[])
       cout << texto[i];
       i++;
     }
-    else if(tipeado == modo::hardcore)
+    else if(tipeado == hardcore)
     {
       Display::cambiar(GRIS_C);
-      gotoxy(0,0);
+      Display::gotoxy(0,0);
       cout << texto << endl;
-      gotoxy(0,0);
+      Display::gotoxy(0,0);
       Display::cambiar(VERDE_C);
       i = 0;
       
       errores++;
     }
-    else if(tipeado == modo::repalabra)
+    else if(tipeado == repalabra)
     {
       errores++; 
       if(texto[i] == ' ' or texto[i] == '\n')
@@ -115,9 +105,9 @@ int main(int argc, char* argv[])
       if(i > 0) i++; // Colocarse delante del espacio
       
       Display::cambiar(GRIS_C);
-      gotoxy(0,0);
+      Display::gotoxy(0,0);
       cout << texto << endl;
-      gotoxy(0,0);
+      Display::gotoxy(0,0);
       Display::cambiar(VERDE_C);
       for(unsigned int j = 0; j < i and i != 0; j++) cout << texto[j];
     }
@@ -127,9 +117,9 @@ int main(int argc, char* argv[])
     }
   }
   
-  system("CLS");
+  Display::clear();
 
-  gotoxy(0,0);
+  Display::gotoxy(0,0);
   Display::cambiar(VERDE_C);
   for(unsigned int j = 0; j < texto.length(); j++)
   {
